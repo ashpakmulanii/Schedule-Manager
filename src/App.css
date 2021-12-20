@@ -13,82 +13,27 @@ body {
   background:rgba(255, 255, 255, 0.1);
 }
 
-.card {
-  margin-bottom: 20px;
-  border: none
-}
 
-.box {
-  width: 500px;
-  padding: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #1f2235;
-  text-align: center;
-  transition: 0.25s;
-  margin-top: 100px;
-  border-radius: 20px;
-}
 
-.box input[type="text"],
-.box input[type="password"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #3498db;
-  padding: 10px 10px;
-  width: 250px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s
+/* <-- Sign Up section --> */
+.signup__btn{
+  margin-top:25px;
+  border-radius:5px;
 }
-
-.box h1 {
-  color: white;
-  text-transform: uppercase;
-  font-weight: 500
+.signup__box{
+  border-radius:12px;
+  transition:0.5s;
 }
-
-.box input[type="text"]:focus,
-.box input[type="password"]:focus {
-  width: 300px;
-  border-color: #2ecc71
+.signup__box input{
+  border:1px solid gray;
+  border-radius:5px;
+  padding:7px;
+  margin-bottom:7px;
 }
-
-.box input[type="submit"] {
-  border: 0;
-  background: none;
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  border: 2px solid #2ecc71;
-  padding: 14px 40px;
-  outline: none;
-  color: white;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer
+.signup__box input:focus{
+  border:1px solid green;
+  width: 240px;
 }
-
-.box input[type="submit"]:hover {
-  background: #2ecc71
-}
-
-.forgot {
-  text-decoration: underline
-}
-
-ul.social-network {
-  list-style: none;
-  display: inline;
-  margin-left: 0 !important;
-  padding: 0
-}
-
 
 
 
@@ -106,6 +51,15 @@ ul.social-network {
 .App-link {
   color: #61dafb;
 }
+.list__card{
+  margin-right:300px;
+  margin-top:20px;
+  margin-left:300px;
+}
+
+
+
+
 
 @media (max-width: 765px) {
   .box {
@@ -122,5 +76,9 @@ ul.social-network {
   .box input[type="text"]:focus,
 .box input[type="password"]:focus {
   width: 240px;
+}
+.list__card{
+  margin-right:0px;
+  margin-left:0px;
 }
 }

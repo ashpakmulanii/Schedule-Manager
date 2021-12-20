@@ -1,19 +1,33 @@
+import { unstable_getNormalizedScrollLeft } from "@mui/utils";
 import { useState } from "react";
+import { db, storage } from "../Firebase";
+import firebase from "firebase/compat";
 
-function AddToDo({ AddNewTodo }) {
+function AddToDo() {
   let HeadingStyle = {
     color: "blue",
   };
   let [title, setTitle] = useState("");
-  let [desc, setDesc] = useState("");
+  let [status, setStatus] = useState(false);
+
+
+
   let Submit = (e) => {
     e.preventDefault();
-    if (!title || !desc) {
-      alert("Field cannot be empty !");
-    } else AddNewTodo(title, desc);
+    if (!title) {
+      alert("Title cannot be empty !");
+    }
+    else {
+      db.collection('todos').add({
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        title: title,
+      })
+      setTitle("");
+      // AddNewTodo(title, desc, status);
+    }
   };
   return (
-    <form>
+    <form onSubmit={Submit}>
       <div className="container my-4">
         <span className="container text-center">
           <h2 style={HeadingStyle}> Schedule Manager</h2>
@@ -32,36 +46,15 @@ function AddToDo({ AddNewTodo }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="form-control"
-            id="exampleInputEmail1"
+            id="title"
             aria-describedby="titleHelp"
           />
           <div id="titleHelp" className="form-text">
             Title or Heading of your task
           </div>
         </div>
-        <div className="mb-3">
-          <label for="desc" className="form-label">
-            Description
-          </label>
-          <input
-            type="text"
-            value={desc}
-            onChange={(e) => setDesc(e.target.value)}
-            className="form-control"
-            id="desc"
-          />
-        </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" for="exampleCheck1">
-            Check me out
-          </label>
-        </div>
-        <button type="submit" onClick={Submit} className="btn btn-success">
+
+        <button type="submit" className="btn btn-success">
           Add Todo
         </button>
       </div>

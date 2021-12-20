@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { auth } from "../Firebase";
 
-export default function Header(props) {
+export default function Header({ title, user, visibility }) {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            {props.title}
+            {title}
           </a>
           <button
             className="navbar-toggler"
@@ -29,58 +30,33 @@ export default function Header(props) {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">
-                  Link
+                  About
                 </a>
               </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  {props.admin}
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      History
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Switch User
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                  <a className="dropdown-item" onClick={()=>props.setCheck(false)}>
-                      {" "}
-                      Log Out{" "}
-                    </a>
-                  </li>
-                </ul>
-              </li>
+              {user ? (
+
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {user}
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a className="dropdown-item" onClick={() => auth.signOut()}>
+                        {" "}
+                        Log Out{" "}
+                      </a>
+                    </li>
+                  </ul>
+                </li>) : ""
+              }
             </ul>
-            {props.visibility ? (
-              <form className="d-flex">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </form>
-            ) : (
-              <p>Please turn on Searchbar visibility</p>
-            )}
           </div>
         </div>
       </nav>
